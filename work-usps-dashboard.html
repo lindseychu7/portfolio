@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USPS International CGR Dashboard — Lindsey Chu</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<div class="password-gate" id="passwordGate">
+  <form class="password-gate__card" id="passwordForm">
+    <svg class="password-gate__logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11Z"/></svg>
+    <p class="password-gate__label">this site is password protected</p>
+    <input type="password" class="password-gate__input" id="passwordInput" placeholder="enter password" autocomplete="off" required>
+    <button type="submit" class="btn btn--primary">enter →</button>
+    <p class="password-gate__error" id="passwordError" hidden>incorrect password, try again</p>
+  </form>
+</div>
+
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Lindsey Chu — home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11Z"/></svg>
+    </a>
+    <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html">home</a>
+      <div class="nav__dropdown">
+        <a href="index.html#work">work</a>
+        <div class="nav__dropdown-menu">
+          <a href="work-faa.html">Federal Aviation Administration</a>
+          <a href="work-usps.html">USPS — Digital Modernization</a>
+          <a href="work-ussf.html">US Space Force</a>
+          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+        </div>
+      </div>
+      <a href="about.html">about</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">resume</a>
+      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <p class="eyebrow">United States Postal Service</p>
+    <h1 style="font-size:40px;">Metrics Dashboard</h1>
+    <dl class="case-meta">
+      <div><dt>Role</dt><dd>Data Engineer / UX Designer</dd></div>
+      <div><dt>Project Type</dt><dd>Data Analytics</dd></div>
+      <div><dt>Impact</dt><dd>Reduced operational costs by 24%</dd></div>
+      <div><dt>Tools</dt><dd>Python, Plotly, Figma</dd></div>
+    </dl>
+
+    <p style="margin-top:32px;">USPS manages thousands of international carrier generated routes (CGRs) spanning commercial airlines, international carriers, customs operations, and logistics partners. I designed and built an analytics and visualization platform that consolidated operational data across more than 2,600 international flight routes.</p>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap two-col">
+    <div>
+    <p class="eyebrow">problem</p>
+    <h2>Disconnected Tools</h2>
+    <p>International logistics generated massive amounts of data across multiple government systems, spreadsheets, and reporting tools. The team spent significant time gathering data before they could identify issues or make informed decisions.</p>
+    <div class="callout">How might we create a centralized analytics platform that enables USPS leaders to monitor international logistics performance, detect fraud, and make proactive operational decisions?</div>
+    </div>
+    <div class="img-placeholder"><img src="assets/dashboard-problem.webp" style="width: 100%; max-width: 500px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap two-col">
+    <div>
+      <p class="eyebrow">user research</p>
+      <h2>Identifying Blind Spots</h2>
+      <p>I collaborated with USPS logistics, program managers, and data analysts to:</p>
+      <ul>
+        <li>Understand CGR reporting workflows</li>
+        <li>Explore fraud detection opportunities</li>
+        <li>Evaluate decision-making processes</li>
+        <li>Determine executive reporting needs</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">key findings</p>
+      <h2>Quicker Summary</h2>
+      <ul>
+        <li>The team crosschecked at least 4 large spreadsheets to manually generate CGR performance insights. Some were on platforms that required contractor sign-in, some on iCloud. Total validation time took around 6 minutes.</li>
+        <li>The team would like to pinpoint cost/performance issues and present mitigation strategies before carriers reach out on their end.</li>
+        <li>The team lacked a consistent way to identify anomalies and suspicious scanning behavior across routes.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap two-col">
+    <div>
+    <p class="eyebrow">competitive analysis</p>
+    <h2>Existing Dashboards</h2>
+    <p>Because no unique, comprehensive USPS-specific dashboard existed, inspiration was gathered from enterprise analytics platforms like:</p>
+    <ul>
+      <li>Tableau Executive Dashboards</li>
+      <li>Microsoft Power BI</li>
+      <li>FedEx Logistics Reporting</li>
+      <li>UPS Operations Dashboards</li>
+    </ul>
+    </div>
+    <div class="img-placeholder"><img src="assets/dashboard-comp.jpeg" style="width: 100%; max-width: 500px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">ideation</p>
+    <h2>Visualizations</h2>
+    <p>My iterations focused on 3 main pages for operations prioritization, clarity, and risk visibility.</p>
+    <div class="two-col">
+      <div>
+        <h3>Gantt Chart</h3>
+        <ul>
+          <li>Filters (start/end date, origin, destination, carrier, operating carrier)</li>
+          <li>CGRs displayed by date, duration, route, and color-coded carriers</li>
+          <li>On hover — show further details like arrival/departure times, day count, leg number, etc.</li>
+        </ul>
+        <h3 style="margin-top: 30px">Dataset Explorer</h3>
+        <ul>
+          <li>Carrier performance</li>
+          <li>Show further details like route capacity, trip number, contract number, etc.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Planned Routes / Heat Map</h3>
+        <ul>
+          <li>Forecasting, trend analysis</li>
+          <li>Route frequency across days of the week</li>
+          <li>Specific leg information</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-placeholder"><img src="assets/dashboard-ideation.png" style="width: 100%; max-width: 700px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">stakeholder validation</p>
+    <h2>Meshing with Current Workflow</h2>
+    <p>Through dashboard walkthroughs with team engineers and analysts, feedback was provided on:</p>
+    <ul>
+      <li>How intuitive it was to apply filters and search for validation they need in less than 2 minutes</li>
+      <li>How efficiently and quickly they could produce reports based on the data visualized</li>
+      <li>How easily comprehensible each dataset was on its own, as well as in conjunction with other spreadsheets while providing decision-making support</li>
+    </ul>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">results</p>
+    <h2>Results</h2>
+    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/dashboard-final.mov" type="video/mp4"></video></div>
+    <p style="margin-top: 30px">The interface leverages a two-panel layout that separates navigation and filtering from data visualization:</p>
+    <p><b>Left:</b> Persistent control center, quick access to Gantt chart, tabular data, and route heat maps while maintaining a shared filter. Global filters such as date range, origin, destination, carrier, and operating carrier enable users to refine datasets and compare insights across visualizations without re-entering.</p>
+    <p><b>Right:</b> Primary analysis workspace, presenting interactive visualizations that support data analysis. Hover states reveal more details. This improves discoverability, enhances data comprehension, and allows users to move between high-level and detailed insights.</p>
+  </div>
+</section>
+
+<section class="section--dark case-section">
+  <div class="wrap">
+    <p class="eyebrow">takeaways</p>
+    <h2>Less is More</h2>
+    <p>Users did not need more data — they needed help to visualize and gather insights. Transforming complex operational data into intuitive visual experiences enabled faster decisions and measurable cost savings.</p>
+    <p>By aligning user needs, business objectives, and operational realities, the platform evolved from a reporting tool into a strategic decision-support product that delivered tangible organizational value.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="case-nav">
+    <a href="work-ussf.html">← USSF</a>
+    <a href="work-faa.html">FAA →</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <a class="back-to-top" href="#top">back to top</a>
+  <p>made with smiles&nbsp; :)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>United States Postal Service — Lindsey Chu</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<div class="password-gate" id="passwordGate">
+  <form class="password-gate__card" id="passwordForm">
+    <svg class="password-gate__logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11Z"/></svg>
+    <p class="password-gate__label">this site is password protected</p>
+    <input type="password" class="password-gate__input" id="passwordInput" placeholder="enter password" autocomplete="off" required>
+    <button type="submit" class="btn btn--primary">enter →</button>
+    <p class="password-gate__error" id="passwordError" hidden>incorrect password, try again</p>
+  </form>
+</div>
+
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Lindsey Chu — home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11Z"/></svg>
+    </a>
+    <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html">home</a>
+      <div class="nav__dropdown">
+        <a href="index.html#work">work</a>
+        <div class="nav__dropdown-menu">
+          <a href="work-faa.html">Federal Aviation Administration</a>
+          <a href="work-usps.html">USPS — Digital Modernization</a>
+          <a href="work-ussf.html">US Space Force</a>
+          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+        </div>
+      </div>
+      <a href="about.html">about</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">resume</a>
+      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <p class="eyebrow">United States Postal Service</p>
+    <h1 style="font-size:44px;">Improved Transaction Flows</h1>
+    <dl class="case-meta">
+      <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
+      <div><dt>Project Type</dt><dd>Retail Experience Modernization</dd></div>
+      <div><dt>Impact</dt><dd>73% increase in sales, Reduced clerk dependency</dd></div>
+      <div><dt>Tools</dt><dd>Figma, Adobe XD, Jira, Claude, React/TSX</dd></div>
+    </dl>
+
+    <p style="margin-top:32px;">The United States Postal Service (USPS) was introducing a new AI-powered retail platform across self-service kiosks. I led the end-to-end modernization effort, defining a scalable design framework and reimagining the customer journey to improve usability, accessibility, and conversion.</p>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap two-col">
+    <div>
+      <p class="eyebrow">problem</p>
+      <h2>Inefficient Transactions</h2>
+      <p>Current flows had inconsistent visual design, outdated IA, and long processes for common transactions. There was difficulty scaling new features; as AI-driven functionality grew in chatbot usage, package detection/measurement, and personalized suggestions, these issues became more apparent.</p>
+      <div class="callout">How might we modernize USPS kiosk experiences to improve usability, accessibility, and customer conversion?</div>
+    </div>
+    <div class="img-placeholder"><img src="assets/usps-problem.png" alt="USPS kiosk" style="width: 100%; max-width: 300px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap two-col">
+    <div>
+      <p class="eyebrow">user research</p>
+      <h2>It works, but could be better</h2>
+      <ul>
+        <li><b>Qualitative:</b> 12+ Interviews, Customer Journey Analysis (Mail a Package/Purchase Stamps), Accessibility Audits</li>
+        <li><b>Quantitative:</b> Surveys, CSAT/CES Scores, Task Completion Times</li>
+        <li><b>Biggest Takeaway:</b> Keep it simple. A kiosk screen is a singular touchpoint - customers have stood in line to use it. Less pressure, the better.</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">key findings</p>
+      <h2>↑ Freedom, ↓ Overload</h2>
+      <ul>
+        <li>Customers navigated across 25+ screens to ship a package.</li>
+        <li>Speed, confidence, and guidance were the main priorities.</li>
+        <li>Customers lacked undo, cancel, or exit options for error prevention.</li>
+        <li>Disabled buttons did not consistently meet accessibility expectations according to WCAG 2.2 and Section 508.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap two-col">
+    <div class="img-placeholder"><img src="assets/usps-research1.png" alt="persona for mailing a package" style="width: 100%; max-width: 400px; height: auto;"></div>
+    <div class="img-placeholder"><img src="assets/usps-research2.png" alt="number of seconds per screen to mail a package" style="width: 100%; max-width: 400px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">competitive analysis</p>
+    <h2>Existing Kiosks</h2>
+    <p>How do these platforms handle visibility of status, design patterns, accessibility, and guidance?</p>
+    <ul>
+      <li>Transportation Ticketing (Delta, Amtrak)</li>
+      <li>TSA PreCheck Enrollment Systems</li>
+      <li>FedEx Retail Services</li>
+      <li>Banking ATM Interfaces</li>
+    </ul>
+    <div class="wrap two-col">
+    <div class="img-placeholder"><img src="assets/usps-comp1.png" alt="Delta kiosk" style="width: 100%; max-width: 400px; height: auto;"></div>
+    <div class="img-placeholder"><img src="assets/usps-comp2.png" alt="Amtrak kiosk" style="width: 100%; max-width: 300px; height: auto;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">ideation</p>
+    <h2>Simplifying Flows</h2>
+    <p>Through collaborative workshops with Product, Engineering, and R&amp;D teams, iterations focused on:</p>
+    <ul>
+      <li>Streamlining content and navigation flows around customer goals and common tasks</li>
+      <li>Ensuring frontend and backend interactions are complementary</li>
+      <li>Maintaining consistency with colors, fonts, and icons coded directly in React/TSX</li>
+      <li>Integrating accessibility requirements into every stage of design and validation</li>
+      <li>Modernizing with clear CTAs and edit/back/cancel options to account for human error</li>
+    </ul>
+  </div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-ideation3.png" alt="Ideation exploration 1" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+    <div class="img-placeholder"><img src="assets/usps-ideation4.png" alt="Ideation exploration 2" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+  </div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-ideation1.png" alt="Ideation exploration 3" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+    <div class="img-placeholder"><img src="assets/usps-ideation2.png" alt="Ideation exploration 4" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+  </div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-ideation5.png" alt="Ideation exploration 5" style="width: auto; height: auto; max-width: 300px"></div>
+    <div class="img-placeholder"><img src="assets/usps-ideation6.png" alt="Ideation exploration 6" style="width: auto; height: auto; max-width: 200px"></div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">heuristics</p>
+    <h2>Testing Prototypes + Scoring AI Outputs</h2>
+    <p>My teammates and I evaluated screen by screen, rated the severity of any issues found, and annotated exactly where and why each one violated a heuristic. I walked away with a clear list of points for improvement and comparable metrics between iterations.</p>
+    <div class="img-placeholder"><img src="assets/usps-heuristics.png" alt="rubric to score UX/UI elements" style="width: 100%; max-width: 700px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">stakeholder validation</p>
+    <h2>Feedback + Iterations</h2>
+    <ul>
+      <li><b>Qualitative:</b> Think-aloud, A/B, Observational, IBM Accessibility Checker</li>
+      <li><b>Quantitative:</b> Task Completion Times, # of Clicks</li>
+      <li><b>Success Metrics:</b>
+        <ul>
+          <li>Task completion efficiency &gt; 85%</li>
+          <li>Navigation success rates &gt; 90%</li>
+          <li>Accessibility compliance</li>
+          <li>Satisfied, Confident Customer</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="wrap two-col image-row">
+    <p class="eyebrow" style="margin-bottom:8px;">before</p>
+    <p class="eyebrow" style="margin-bottom:8px;">after</p>
+  </div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-before1.png" alt="Before — comparison 1" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+    <div class="img-placeholder"><img src="assets/usps-after1.png" alt="After — comparison 1" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+  </div>
+  <div class="wrap"><p style="margin-top: 30px; margin-bottom: 30px;">For guidance, I added a persistent nav bar with access to Mr Zip (chatbot), language options, and cart. The progress bar is a clear status indicator; back and cancel buttons give users the ability to go back on their decisions.</p></div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-before2.png" alt="Before — comparison 2" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+    <div class="img-placeholder"><img src="assets/usps-after2.png" alt="After — comparison 2" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+  </div>
+  <div class="wrap"><p style="margin-top: 30px; margin-bottom: 30px;">The cart summary shows transaction details and related services/pricing. Disabled buttons have extra visual indicators and error messages. </p></div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-before3.png" alt="Before — comparison 3" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+    <div class="img-placeholder"><img src="assets/usps-after3.png" alt="After — comparison 3" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+  </div>
+  <div class="wrap"><p style="margin-top: 30px; margin-bottom: 30px;">For more consistent button colors, back is grey, close is red, and primary action is blue. "No" and "Yes" are both valid answers that will bring users forward in the flow.</p></div>
+  <div class="wrap two-col image-row">
+    <div class="img-placeholder"><img src="assets/usps-before4.png" alt="Before — comparison 4" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+    <div class="img-placeholder"><img src="assets/usps-after4.png" alt="After — comparison 4" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
+  </div>
+  <div class="wrap"><p style="margin-top: 30px">Moving "Back" to the top-left separates it physically from the primary forward action so they don’t accidentally click on it.</p></div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">results</p>
+    <h2>Building Customer Confidence</h2>
+    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/usps-video.mov" type="video/mp4"></video></div>
+    <p style="margin-top: 30px">USPS's NextGen Retail Software System has a new modernized feel, with progress-tracked mailing flows, enhanced readability, and validated accessibility against WCAG 2.2 and Section 508 standards. At any point in a workflow, users can choose to void or suspend their transactions if they want to resume their progress later on. Customers can now act freely with options to go back/cancel/edit.</p>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">additional improvements</p>
+    <h2>Changing Landscape</h2>
+    <ul>
+      <li>Speech-to-text investments: cost avoidance means fewer clerk-hours and service improvements</li>
+      <li>Phone-kiosk connections</li>
+      <li>New vertical kiosks… self-checkout capabilities…</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section--dark case-section">
+  <div class="wrap">
+    <p class="eyebrow">takeaways</p>
+    <h2>Always Improving</h2>
+    <p>Build way-outs. Test for edge cases. </p>
+    <p>Innovatively iterate. Design is not a one-and-done assignment; new technologies emerge every day.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="case-nav">
+    <a href="work-faa.html">← FAA</a>
+    <a href="work-ussf.html">USSF →</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <a class="back-to-top" href="#top">back to top</a>
+  <p>made with smiles&nbsp; :)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

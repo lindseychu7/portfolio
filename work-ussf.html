@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>United States Space Force — Lindsey Chu</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<div class="password-gate" id="passwordGate">
+  <form class="password-gate__card" id="passwordForm">
+    <svg class="password-gate__logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11Z"/></svg>
+    <p class="password-gate__label">this site is password protected</p>
+    <input type="password" class="password-gate__input" id="passwordInput" placeholder="enter password" autocomplete="off" required>
+    <button type="submit" class="btn btn--primary">enter →</button>
+    <p class="password-gate__error" id="passwordError" hidden>incorrect password, try again</p>
+  </form>
+</div>
+
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Lindsey Chu — home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11Z"/></svg>
+    </a>
+    <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html">home</a>
+      <div class="nav__dropdown">
+        <a href="index.html#work">work</a>
+        <div class="nav__dropdown-menu">
+          <a href="work-faa.html">Federal Aviation Administration</a>
+          <a href="work-usps.html">USPS — Digital Modernization</a>
+          <a href="work-ussf.html">US Space Force</a>
+          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+        </div>
+      </div>
+      <a href="about.html">about</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">resume</a>
+      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <p class="eyebrow">United States Space Force</p>
+    <h1 style="font-size:44px;">Mission-Critical Learning Platform</h1>
+    <dl class="case-meta">
+      <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
+      <div><dt>Project Type</dt><dd>Digital Transformation</dd></div>
+      <div><dt>Impact</dt><dd>Reduced friction surrounding learning experiences for 8,000+ personnel</dd></div>
+      <div><dt>Tools</dt><dd>Figma, Figma Make, Design Systems, Claude, Prompt Engineering</dd></div>
+    </dl>
+
+    <p style="margin-top:32px;">As the United States Space Force (USSF) continued to evolve its mission and workforce, training programs became increasingly complex, distributed, and difficult to manage. 
+      I led the design of an AI-powered learning platform that consolidated training resources, personalized learning experiences, and created a scalable foundation for future workforce development. </p>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap two-col">
+    <div>
+    <p class="eyebrow">problem</p>
+    <h2>Problem</h2>
+    <p>USSF personnel did not have a go-to platform to complete mission-critical learning requirements. Training content was:</p>
+    <ul>
+      <li>Difficult to discover and navigate</li>
+      <li>Inconsistent in structure and presentation</li>
+      <li>Lacking personalization based on role or career path</li>
+    </ul>
+    <div class="callout">How might we create a centralized, AI-powered learning ecosystem that enables USSF to easily discover, complete, and manage mission-critical training?</div>
+    </div>
+    <div class="img-placeholder"><img src="assets/ussf-problem.png" alt="learning platform" style="width: 100%; max-width: 500px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap two-col">
+    <div>
+      <p class="eyebrow">user research</p>
+      <h2>Uncover Pain Points</h2>
+      <p>To understand learning challenges and training workflows, research was conducted with:</p>
+      <ul>
+        <li>Active USSF personnel</li>
+        <li>Training coordinators</li>
+        <li>Learning administrators</li>
+        <li>PMs and SMEs</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">key findings</p>
+      <h2>Personalized Track</h2>
+      <ul>
+        <li>USSF personnel did not have a go-to system to locate required training materials.</li>
+        <li>They struggled to identify which courses were most relevant to their responsibilities and career progression.</li>
+        <li>There was no consistency throughout the interfaces, navigation structures, and content formats.</li>
+        <li>Training managers spent significant time manually tracking progress and guiding learners.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap two-col">
+    <div>
+    <p class="eyebrow">competitive analysis</p>
+    <h2>Inspiration from Other Projects</h2>
+    <p>Our team had connections to contractors working with the Army and Navy. We used their education platforms as a guide, along with other learning platforms like:</p>
+    <ul>
+      <li>Coursera</li>
+      <li>Udemy Business</li>
+      <li>Khan Academy</li>
+      <li>Duolingo</li>
+      <li>Salesforce Trailhead</li>
+    </ul>
+    <p><b>Takeaways:</b> Guided and tracked training journeys, AI-powered content suggestions based on program, Visible learner achievements/badges</p>
+    </div>
+    <div class="img-placeholder"><img src="assets/ussf-comp.png" alt="Khan Academy" style="width: 100%; max-width: 500px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap two-col">
+    <div>
+      <p class="eyebrow">requirements & goals</p>
+      <h2>Workforce Readiness</h2>
+      <p><b>USSF Goals</b></p>
+      <ul>
+        <li>Centralized learning experiences</li>
+        <li>Introduce progress tracking and AI suggestions based on program</li>
+        <li>Improve training completion rates by 15%</li>
+        <li>Reduce administrative burden</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">&nbsp;</p>
+      <h2 style="visibility:hidden;">&nbsp;</h2>
+      <p><b>Personnel Goals</b></p>
+      <ul>
+        <li>Quickly locate required training (&lt; 1 min)</li>
+        <li>Understand learning pathways and complete training efficiently</li>
+        <li>Track certifications and progress with badges and titles</li>
+        <li>Receive personalized recommendations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">ideation</p>
+    <h2>Skill-based Training</h2>
+    <p>Through my iterations, I focused on 3 main requirements:</p>
+    <div class="two-col" style="margin-bottom:8px;">
+      <div>
+        <h3>Personalized Dashboard</h3>
+        <ul>
+          <li>Current training (Top Training Picks, In Progress)</li>
+          <li>Recommended courses based on job title and peers</li>
+          <li>Certifications to boost workforce readiness</li>
+          <li>Upcoming requirements and deadlines</li>
+        </ul>
+        <h3 style="margin-top: 30px">Learning Marketplace</h3>
+        <ul>
+          <li>Search and discovery</li>
+          <li>Skill-based recommendations</li>
+          <li>Career development pathways (suggested or admin-assigned)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Progress Management</h3>
+        <ul>
+          <li>Completion tracking (progress bars, resume action)</li>
+          <li>Learning milestones and self-testing</li>
+          <li>Certification status</li>
+        </ul>
+      </div>
+    </div>
+    <p>To ensure scalability across future learning initiatives, I created a component library (navigation menus, modular cards, progress indicators) and a space-themed style guide. </p>
+    <div class="img-placeholder"><img src="assets/ussf-ideation.png" alt="USSF logo" style="width: 100%; max-width: 500px; height: auto;"></div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">stakeholder validation</p>
+    <h2>Observational Testing</h2>
+    <p>I conducted 4 walkthroughs and task-based usability testing. I asked if users could:</p>
+    <ul>
+      <li>Find required training in under 1 minute?</li>
+      <li>Understand learning requirements associated with a certain program?</li>
+      <li>Track progress effectively?</li>
+      <li>Navigate confidently with few clicks?</li>
+      <li>Discover relevant content from admin and peers?</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">results</p>
+    <h2>Mission Ready!</h2>
+    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/ussf-flow1.mov" type="video/mp4"></video></div>
+    <p style="margin-top: 30px; margin-bottom: 30px;">Upon log in, users can view Top Training Picks, view in-progress trainings, track their learning plan, and explore other learning modules. The navigation bar provides quick access to learn, plan, and manage their training plans. Plus, the background and design components are floating, space-themed!</p>
+    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/ussf-flow2.mov" type="video/mp4"></video></div>
+    <p style="margin-top: 30px; margin-bottom: 30px;">Navigating into a specific training page displays additional info, modules included, files/attachments, FAQs, and related training. Users can also view completion status, learning badges, collaborators, and launch the training itself. (P.S. the progress bar is a spaceship…)</p>
+    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/ussf-flow3.mov" type="video/mp4"></video></div>
+    <p style="margin-top: 30px">Each card component displays training dates, duration, tags, type, and location. Users can enroll in learning sessions and keep track of what they need to complete by a specific deadline.</p>
+  </div>
+</section>
+
+<section class="section--dark case-section">
+  <div class="wrap">
+    <p class="eyebrow">takeaways</p>
+    <h2>Lessons Learned</h2>
+    <p>The most effective training experiences are not only repositories of content, they guide users toward why this information is important to learn and how it fits into their role. Systems thinking consisting of experiences, standards, and governance supports future organizational growth. By combining user research, stakeholder goals, and business objectives, the platform evolved from a collection of training tools into a strategic workforce development solution.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="case-nav">
+    <a href="work-usps.html">← USPS</a>
+    <a href="work-usps-dashboard.html">USPS Dashboard →</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <a class="back-to-top" href="#top">back to top</a>
+  <p>made with smiles&nbsp; :)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
