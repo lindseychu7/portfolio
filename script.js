@@ -43,6 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('is-open');
+      document.body.classList.add('is-locked');
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      lightboxImg.src = '';
+    }
+
+    document.querySelectorAll('.lightbox-trigger').forEach((img) => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+
   const heroChar = document.getElementById('heroCharacter');
   if (heroChar) {
     const stops = [8, 47, 84]; // kitchen, park, bed (left %)
