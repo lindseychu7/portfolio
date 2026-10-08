@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.addEventListener('pageshow', function () {
+    if (window.matchMedia('(max-width: 820px)').matches) { window.scrollTo(0, 0); }
+  });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>United States Postal Service — Lindsey Chu</title>
 <link rel="stylesheet" href="styles.css">
@@ -25,20 +31,22 @@
     </a>
     <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav class="nav__links">
-      <a href="index.html">home</a>
-      <div class="nav__dropdown">
-        <a href="index.html#work">work</a>
-        <div class="nav__dropdown-menu">
-          <a href="work-faa.html">Federal Aviation Administration</a>
-          <a href="work-usps.html">USPS — Digital Modernization</a>
-          <a href="work-ussf.html">US Space Force</a>
-          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+      <div class="nav__links-inner">
+        <a href="index.html">home</a>
+        <div class="nav__dropdown">
+          <a href="index.html#work" class="nav__dropdown-trigger">work<span class="nav__dropdown-plus" aria-hidden="true">+</span></a>
+          <div class="nav__dropdown-menu">
+            <div class="nav__dropdown-menu-inner">
+              <a href="work-usps.html">USPS — Digital Modernization</a>
+              <a href="work-faa.html">Federal Aviation Administration</a>
+            </div>
+          </div>
         </div>
+        <a href="about.html">about</a>
+        <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+        </a>
       </div>
-      <a href="about.html">about</a>
-      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
-      </a>
     </nav>
   </div>
 </header>
@@ -46,15 +54,20 @@
 <section class="case-hero">
   <div class="wrap">
     <p class="eyebrow">United States Postal Service</p>
-    <h1 style="font-size:44px;">Improved Transaction Flows</h1>
+    <h1 style="font-size:44px;">Redesigning the Package Shipment Flow</h1>
     <dl class="case-meta">
       <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
-      <div><dt>Project Type</dt><dd>Retail Experience Modernization</dd></div>
-      <div><dt>Impact</dt><dd>73% increase in sales, Reduced clerk dependency</dd></div>
+      <div><dt>Team</dt><dd>5 engineers, 1 PM, 1 PO</dd></div>
+      <div><dt>Project Type</dt><dd>Modernization</dd></div>
+      <div><dt>Projected Impact</dt><dd>43% increased customer satisfaction, 20% reduced clerk dependency</dd></div>
       <div><dt>Tools</dt><dd>Figma, Adobe XD, Jira, Claude, React/TSX</dd></div>
     </dl>
 
-    <p style="margin-top:32px;">The United States Postal Service (USPS) was introducing a new AI-powered retail platform across self-service kiosks. I led the end-to-end modernization effort, defining a scalable design framework and reimagining the customer journey to improve usability, accessibility, and conversion.</p>
+    <p style="margin-top:32px;">Shipping a package at a USPS self-service kiosk took 10+ minutes. I led the redesign of the kiosk's transaction flow as USPS rolled out new AI features. Three decisions drove the results: collapsing 25+ screens into 4 stages, fixing address entry bottleneck, and letting customers suspend or void a transaction instead of abandoning it.</p>
+    <div class="disclaimer">
+      <img src="assets/warning.png" alt="">
+      <span>As this project was completed for a government client, I'm not able to share all of the original work publicly. Some of the visuals shown here have been reworked or recreated to demonstrate my process without disclosing confidential materials.</span>
+    </div>
   </div>
 </section>
 
@@ -62,180 +75,328 @@
   <div class="wrap two-col">
     <div>
       <p class="eyebrow">problem</p>
-      <h2>Inefficient Transactions</h2>
-      <p>Current flows had inconsistent visual design, outdated IA, and long processes for common transactions. There was difficulty scaling new features; as AI-driven functionality grew in chatbot usage, package detection/measurement, and personalized suggestions, these issues became more apparent.</p>
-      <div class="callout">How might we modernize USPS kiosk experiences to improve usability, accessibility, and customer conversion?</div>
+      <h2>Every Screen Costs a Customer</h2>
+      <p>A kiosk isn't a website people browse at home. Customers have usually waited in line to reach it, often with a package in hand and people behind them. The old flow had:</p>
+      <ul>
+        <li>25+ screens</li>
+        <li>~10 minutes per transaction</li>
+        <li>No undo, cancel, or exit</li>
+        <li>Inconsistent buttons that didn't meet WCAG 2.2 / Section 508</li>
+      </ul>
+      </div>
+    <div>
+      <p class="eyebrow">&nbsp;</p>
+      <h2 style="visibility:hidden;">&nbsp;</h2>
+      <p>USPS was also adding AI features — a chatbot, automatic package measurement — and the existing flow had no clean place to put them. When customers gave up at the kiosk, USPS lost the sale or moved it to a clerk.</p>
+      <div class="hmw-bubble">
+        <img src="assets/character.png" alt="" class="hmw-bubble__character">
+        <div class="hmw-bubble__speech">How might we make shipping at a kiosk fast and low-pressure enough that customers finish on their own?
+          <span class="hmw-bubble__dot hmw-bubble__dot--1"></span>
+          <span class="hmw-bubble__dot hmw-bubble__dot--2"></span>
+          <span class="hmw-bubble__dot hmw-bubble__dot--3"></span>
+        </div>
+      </div>
     </div>
-    <div class="img-placeholder"><img src="assets/usps-problem.png" alt="USPS kiosk" style="width: 100%; max-width: 300px; height: auto;"></div>
+  </div>
+  <div class="wrap" style="margin-top:32px; text-align:center;">
+    <a class="btn btn--outline" href="https://www.youtube.com/watch?v=BpX8BTVcYSI" target="_blank" rel="noopener">see the current system in action →</a>
   </div>
 </section>
 
 <section class="case-section">
-  <div class="wrap two-col">
+  <div class="wrap">
     <div>
       <p class="eyebrow">user research</p>
-      <h2>It works, but could be better</h2>
-      <ul>
-        <li><b>Qualitative:</b> 12+ Interviews, Customer Journey Analysis (Mail a Package/Purchase Stamps), Accessibility Audits</li>
-        <li><b>Quantitative:</b> Surveys, CSAT/CES Scores, Task Completion Times</li>
-        <li><b>Biggest Takeaway:</b> Keep it simple. A kiosk screen is a singular touchpoint - customers have stood in line to use it. Less pressure, the better.</li>
-      </ul>
+      <h2>Speed, Confidence, and Guidance</h2>
+      <p>I ran 12+ customer interviews, mapped the current journey for mailing a package, and audited the flow for accessibility — backed by surveys, CSAT and customer effort scores, and task timings for each step.</p>
+      <div class="reveal-cards">
+        <button class="reveal-card" type="button">
+          <div class="reveal-card__inner">
+            <div class="reveal-card__face reveal-card__face--front">
+              <span class="reveal-card__label">reveal finding #1</span>
+            </div>
+            <div class="reveal-card__face reveal-card__face--back">
+              <span class="reveal-card__content">Customers didn't want more features. They want to know where they were and that they wouldn't make a costly mistake.</span>
+            </div>
+          </div>
+        </button>
+        <button class="reveal-card" type="button">
+          <div class="reveal-card__inner">
+            <div class="reveal-card__face reveal-card__face--front">
+              <span class="reveal-card__label">reveal finding #2</span>
+            </div>
+            <div class="reveal-card__face reveal-card__face--back">
+              <span class="reveal-card__content">Destination and sender addresses entry could take about 60 seconds each, roughly 42% of the measured task time.</span>
+            </div>
+          </div>
+        </button>
+        <button class="reveal-card" type="button">
+          <div class="reveal-card__inner">
+            <div class="reveal-card__face reveal-card__face--front">
+              <span class="reveal-card__label">reveal finding #3</span>
+            </div>
+            <div class="reveal-card__face reveal-card__face--back">
+              <span class="reveal-card__content">A frequent-shipper worried a wrong tap would cancel everything, with no way to undo, edit, or pause.</span>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:30px;">
+    <p>I also studied kiosks customers already know how to use — Delta and Amtrak check-in and bank ATMs — looking at how each shows progress and offers a way out. Their pattern: always show people where they are, and always give them a way back.</p>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">decision 1: visibility of system status</p>
+    <h2>4 Stages, Not 25 Steps</h2>
+    <div class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">What I Saw</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <p>I mapped out every screen of the old package shipment flow and asked 2 questions about each one: </p>
+            <ul>
+              <li>Does the customer need to make a decision here?</li>
+              <li>Is this in the order the customer thinks about their package?</li>
+            </ul>
+          <p>Most screens failed. Related questions were spread far apart — the destination address was collected near the start, but the recipient's name came much later after services and labels. Customers had to switch context again and again.</p>
+        </div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">What I Decided</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <ul>
+            <li>Legal agreement and two hazmat confirmations couldn't be removed (shipping regulations require them), but I combined them into one confirmation screen with plain-language explanations.</li>
+            <li>Moved mail class and package information to the start of the flow, since that's what customers think about first.</li>
+            <li>Grouped weight, dimensions, and shape into one Package Details stage that the scale and package-detection feature mostly fill in automatically.</li>
+            <li>Combined recipient and sender details into one Addresses stage.</li>
+            <li>Merged service choices (Certified Mail, Signature Confirmation) into one Service Options screen with a live running total.</li>
+            <li>Rare questions (return-receipt options, pre-printed labels) became pop-ups instead of full screens.</li>
+          </ul>
+        </div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">Why It Matters</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <ul>
+            <li>The flow runs through four clearly labeled stages in a progress bar on every screen: Mail Class → Package Details → Addresses → Services. </li>
+            <li>Customers always know where they are and how much is left, which lowers pressure. </li>
+            <li>The new structure also gave USPS a place to add AI features: Mr. Zip lives in a persistent top bar and package detection plugs into Package Details.</li>
+          </ul>
+        </div></div>
+      </details>
+    </div>
+  </div>
+  <div class="wrap two-col image-row" style="margin-top:30px;">
+    <div>
+      <p class="eyebrow" style="margin-bottom:8px;">before</p>
+      <div class="img-placeholder" style="padding:6px;"><img src="assets/usps-beforeflow.png" alt="Before — package shipment flow" class="lightbox-trigger" style="width: auto; height: auto; max-width: min(520px, 100%); max-height: 520px;"></div>
     </div>
     <div>
-      <p class="eyebrow">key findings</p>
-      <h2>↑ Freedom, ↓ Overload</h2>
-      <ul>
-        <li>Customers navigated across 25+ screens to ship a package.</li>
-        <li>Speed, confidence, and guidance were the main priorities.</li>
-        <li>Customers lacked undo, cancel, or exit options for error prevention.</li>
-        <li>Disabled buttons did not consistently meet accessibility expectations according to WCAG 2.2 and Section 508.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="wrap two-col">
-    <div class="img-placeholder"><img src="assets/usps-research1.png" alt="persona for mailing a package" style="width: 100%; max-width: 400px; height: auto;"></div>
-    <div class="img-placeholder"><img src="assets/usps-research2.png" alt="number of seconds per screen to mail a package" style="width: 100%; max-width: 400px; height: auto;"></div>
-  </div>
-</section>
-
-<section class="section--tint case-section">
-  <div class="wrap">
-    <p class="eyebrow">competitive analysis</p>
-    <h2>Existing Kiosks</h2>
-    <p>How do these platforms handle visibility of status, design patterns, accessibility, and guidance?</p>
-    <ul>
-      <li>Transportation Ticketing (Delta, Amtrak)</li>
-      <li>TSA PreCheck Enrollment Systems</li>
-      <li>FedEx Retail Services</li>
-      <li>Banking ATM Interfaces</li>
-    </ul>
-    <div class="wrap two-col">
-    <div class="img-placeholder"><img src="assets/usps-comp1.png" alt="Delta kiosk" style="width: 100%; max-width: 400px; height: auto;"></div>
-    <div class="img-placeholder"><img src="assets/usps-comp2.png" alt="Amtrak kiosk" style="width: 100%; max-width: 300px; height: auto;"></div>
+      <p class="eyebrow" style="margin-bottom:8px;">after</p>
+      <div class="img-placeholder" style="padding:6px;"><img src="assets/usps-afterflow.png" alt="After — package shipment flow" class="lightbox-trigger" style="width: auto; height: auto; max-width: min(520px, 100%); max-height: 520px;"></div>
     </div>
   </div>
 </section>
 
 <section class="case-section">
   <div class="wrap">
-    <p class="eyebrow">ideation</p>
-    <h2>Simplifying Flows</h2>
-    <p>Through collaborative workshops with Product, Engineering, and R&amp;D teams, iterations focused on:</p>
-    <ul>
-      <li>Streamlining content and navigation flows around customer goals and common tasks</li>
-      <li>Ensuring frontend and backend interactions are complementary</li>
-      <li>Maintaining consistency with colors, fonts, and icons coded directly in React/TSX</li>
-      <li>Integrating accessibility requirements into every stage of design and validation</li>
-      <li>Modernizing with clear CTAs and edit/back/cancel options to account for human error</li>
-    </ul>
+    <p class="eyebrow">decision 2: saved information</p>
+    <h2>Fixing Address Entry</h2>
+    <div class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">What I Saw</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <p>Typing a full address on a kiosk touchscreen is slow and error-prone. Customers had to enter a destination zip code, then the street, then confirm it — then repeat for their own address. Each address took about 60 seconds, and a typo meant going back through several screens to fix it.</p>
+        </div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">What I Decided</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <ul>
+            <li>For logged-in customers: recipients they've saved appear as a tappable list, new addresses can be saved, and their sender address fills in automatically. The once separate confirmation modal became a label preview on the same screen. (P.S. Logging in could be a quick QR code scan from the USPS app.)</li>
+            <li>Added an Edit button beside each address in the final summary, so fixing a typo is one tap instead of backtracking.</li>
+          </ul>
+        </div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">Why It Matters</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <p>Address entry was the single biggest block of time in the flow. Cutting it down had more impact on total transaction time than any other change — and it's the change repeat customers feel on every visit.</p>
+        </div></div>
+      </details>
+    </div>
   </div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-ideation3.png" alt="Ideation exploration 1" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-    <div class="img-placeholder"><img src="assets/usps-ideation4.png" alt="Ideation exploration 2" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-  </div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-ideation1.png" alt="Ideation exploration 3" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-    <div class="img-placeholder"><img src="assets/usps-ideation2.png" alt="Ideation exploration 4" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-  </div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-ideation5.png" alt="Ideation exploration 5" style="width: auto; height: auto; max-width: 300px"></div>
-    <div class="img-placeholder"><img src="assets/usps-ideation6.png" alt="Ideation exploration 6" style="width: auto; height: auto; max-width: 200px"></div>
+  <div class="wrap two-col image-row" style="margin-top:30px;">
+    <div>
+      <p class="eyebrow" style="margin-bottom:8px;">new customers</p>
+      <div class="img-placeholder" style="padding:6px;"><img src="assets/usps-signin.png" alt="Sign in for saved addresses" class="lightbox-trigger" style="width: auto; height: auto; max-width: min(520px, 100%); max-height: 520px;"></div>
+    </div>
+    <div>
+      <p class="eyebrow" style="margin-bottom:8px;">returning customers</p>
+      <div class="img-placeholder" style="padding:6px;">
+        <video class="lightbox-trigger" muted autoplay loop playsinline preload="auto" style="width: auto; height: auto; max-width: min(520px, 100%); max-height: 520px;">
+          <source src="assets/usps-saved.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section--tint case-section">
   <div class="wrap">
-    <p class="eyebrow">heuristics</p>
-    <h2>Testing Prototypes + Scoring AI Outputs</h2>
-    <p>My teammates and I evaluated screen by screen, rated the severity of any issues found, and annotated exactly where and why each one violated a heuristic. I walked away with a clear list of points for improvement and comparable metrics between iterations.</p>
+    <p class="eyebrow">decision 3: user control and freedom</p>
+    <h2>Suspend/Void and Extra Guidance</h2>
+    <div class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">What I Saw</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <p>The old kiosk had no safe exit. If a customer tapped the wrong option, realized they'd forgotten something, or simply ran out of time, their choices were to push through or walk away. The customer lost their progress and USPS lost the sale or sent that customer to the counter.</p>
+        </div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">What I Decided</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <ul>
+            <li>I added a Cancel Transaction button that's always visible. Tapping it doesn't immediately cancel anything — it opens a choice between Suspend Transaction (saves progress and provides a voucher so they can resume at another kiosk or clerk counter) and Void Transaction (ends everything and guarantees the card won't be charged). </li>
+            <li>I backed this up with smaller safeguards: Back and Edit buttons on every stage, consistent button semantics (blue for primary action, red for dangerous actions, secondary for other actions), and disabled/unavailable options marked with visual cues and explanations rather than just greyed out.</li>
+          </ul>
+        </div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__trigger"><span class="accordion__trigger-label">Why It Matters</span><span class="accordion__icon">+</span></summary>
+        <div class="accordion__panel"><div class="accordion__panel-inner">
+          <ul>
+            <li>Suspend turns an abandoned transaction into a paused one — the sale isn't lost, and even when a customer does need a clerk, the clerk starts from a finished draft instead of from scratch. Void gives customers the confidence to explore without worrying about a surprise charge.</li>
+            <li>Back and edit buttons provide additional control and flexibility for navigation, and visual cues/guided interactions help prevent mistakes and improve accessibility.</li>
+          </ul>
+        </div></div>
+      </details>
+    </div>
+  </div>
+  <div class="wrap two-col image-row" style="margin-top:30px;">
+    <div>
+      <p class="eyebrow" style="margin-bottom:8px;">cancel &amp; void</p>
+      <div class="img-placeholder" style="padding:6px;">
+        <video class="lightbox-trigger" muted autoplay loop playsinline preload="auto" style="width: auto; height: auto; max-width: min(520px, 100%); max-height: 520px;">
+          <source src="assets/usps-cancel-void.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow" style="margin-bottom:8px;">services</p>
+      <div class="img-placeholder" style="padding:6px;">
+        <video class="lightbox-trigger" muted autoplay loop playsinline preload="auto" style="width: auto; height: auto; max-width: min(520px, 100%); max-height: 520px;">
+          <source src="assets/usps-services.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">validation</p>
+    <h2>Scoring Screens Against a Rubric</h2>
+    <p>I built a heuristic rubric covering system status, user control, visual consistency, information hierarchy, error prevention, and guidance. Teammates and I scored each screen from 1 (poor) to 3 (good) and annotated where and why each issue occurred, so we could compare iterations with real numbers.</p>
     <div class="img-placeholder"><img src="assets/usps-heuristics.png" alt="rubric to score UX/UI elements" style="width: 100%; max-width: 700px; height: auto;"></div>
+    <p style="margin-top: 30px;">I backed the heuristic scoring up with real user testing: think-aloud sessions, observation, A/B tests, and the IBM Accessibility Checker. Success targets were task completion efficiency above 85%, navigation success above 90%, and full accessibility compliance.</p>
   </div>
-</section>
-
-<section class="case-section">
-  <div class="wrap">
-    <p class="eyebrow">stakeholder validation</p>
-    <h2>Feedback + Iterations</h2>
-    <ul>
-      <li><b>Qualitative:</b> Think-aloud, A/B, Observational, IBM Accessibility Checker</li>
-      <li><b>Quantitative:</b> Task Completion Times, # of Clicks</li>
-      <li><b>Success Metrics:</b>
-        <ul>
-          <li>Task completion efficiency &gt; 85%</li>
-          <li>Navigation success rates &gt; 90%</li>
-          <li>Accessibility compliance</li>
-          <li>Satisfied, Confident Customer</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="wrap two-col image-row">
-    <p class="eyebrow" style="margin-bottom:8px;">before</p>
-    <p class="eyebrow" style="margin-bottom:8px;">after</p>
-  </div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-before1.png" alt="Before — comparison 1" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-    <div class="img-placeholder"><img src="assets/usps-after1.png" alt="After — comparison 1" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-  </div>
-  <div class="wrap"><p style="margin-top: 30px; margin-bottom: 30px;">For guidance, I added a persistent nav bar with access to Mr Zip (chatbot), language options, and cart. The progress bar is a clear status indicator; back and cancel buttons give users the ability to go back on their decisions.</p></div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-before2.png" alt="Before — comparison 2" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-    <div class="img-placeholder"><img src="assets/usps-after2.png" alt="After — comparison 2" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-  </div>
-  <div class="wrap"><p style="margin-top: 30px; margin-bottom: 30px;">The cart summary shows transaction details and related services/pricing. Disabled buttons have extra visual indicators and error messages. </p></div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-before3.png" alt="Before — comparison 3" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-    <div class="img-placeholder"><img src="assets/usps-after3.png" alt="After — comparison 3" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-  </div>
-  <div class="wrap"><p style="margin-top: 30px; margin-bottom: 30px;">For more consistent button colors, back is grey, close is red, and primary action is blue. "No" and "Yes" are both valid answers that will bring users forward in the flow.</p></div>
-  <div class="wrap two-col image-row">
-    <div class="img-placeholder"><img src="assets/usps-before4.png" alt="Before — comparison 4" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-    <div class="img-placeholder"><img src="assets/usps-after4.png" alt="After — comparison 4" style="width: auto; height: auto; max-width: 400px; max-height: 400px;"></div>
-  </div>
-  <div class="wrap"><p style="margin-top: 30px">Moving "Back" to the top-left separates it physically from the primary forward action so they don’t accidentally click on it.</p></div>
 </section>
 
 <section class="section--tint case-section">
-  <div class="wrap">
-    <p class="eyebrow">results</p>
-    <h2>Building Customer Confidence</h2>
-    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/usps-video.mov" type="video/mp4"></video></div>
-    <p style="margin-top: 30px">USPS's NextGen Retail Software System has a new modernized feel, with progress-tracked mailing flows, enhanced readability, and validated accessibility against WCAG 2.2 and Section 508 standards. At any point in a workflow, users can choose to void or suspend their transactions if they want to resume their progress later on. Customers can now act freely with options to go back/cancel/edit.</p>
-  </div>
-</section>
-
-<section class="case-section">
   <div class="wrap">
     <p class="eyebrow">additional improvements</p>
-    <h2>Changing Landscape</h2>
-    <ul>
-      <li>Speech-to-text investments: cost avoidance means fewer clerk-hours and service improvements</li>
-      <li>Phone-kiosk connections</li>
-      <li>New vertical kiosks… self-checkout capabilities…</li>
-    </ul>
+    <h2>More Than Just the Flow</h2>
+    <p>A few other things I worked on:</p>
+  </div>
+  <div class="wrap wrap--wide">
+    <div class="showcase-grid">
+      <div class="showcase-tile showcase-tile--design">
+        <img src="assets/usps-design-system.png" alt="USPS design system — colors, type, components">
+        <div class="showcase-tile__overlay">
+          <p class="showcase-tile__title">Design System</p>
+          <p class="showcase-tile__desc">Injected new components into the USPS design system to ensure consistency and scalability across all platforms.</p>
+        </div>
+      </div>
+      <div class="showcase-tile showcase-tile--empty">
+        <img src="assets/usps-empty-loading.png" alt="USPS empty and loading states">
+        <div class="showcase-tile__overlay">
+          <p class="showcase-tile__title">Empty &amp; Loading States</p>
+          <p class="showcase-tile__desc">Designed clear empty and loading states so the kiosk never feels stuck or broken while waiting on a response.</p>
+        </div>
+      </div>
+      <div class="showcase-tile showcase-tile--ideation6">
+        <img src="assets/usps-ideation6.png" alt="USPS component file structure">
+        <div class="showcase-tile__overlay">
+          <p class="showcase-tile__title">Prototyping in Code</p>
+          <p class="showcase-tile__desc">Worked with engineers to turn one-off screens into a shared component library in React/TSX.</p>
+        </div>
+      </div>
+      <div class="showcase-tile showcase-tile--ideation5">
+        <img src="assets/usps-ideation5.png" alt="USPS styled component code">
+        <div class="showcase-tile__overlay">
+          <p class="showcase-tile__title">Iterating with Engineers</p>
+          <p class="showcase-tile__desc">Refining interaction details side-by-side with the engineering team to keep the build faithful to the design.</p>
+        </div>
+      </div>
+      <div class="showcase-tile showcase-tile--kiosk">
+        <img src="assets/usps-newkiosk.png" alt="USPS new kiosk hardware">
+        <div class="showcase-tile__overlay">
+          <p class="showcase-tile__title">New Kiosk</p>
+          <p class="showcase-tile__desc">Partnered with hardware teams rolling out the new kiosk units and advocated for speech-to-text investments to improve accessibility.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">results</p>
+    <h2>Building Confidence</h2>
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr><th>Measure</th><th>Before</th><th>After</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Screens to ship a package</td><td>25+</td><td>11+ in 4 stages</td></tr>
+          <tr><td>Time per transaction</td><td>~10 min</td><td>6 min</td></tr>
+          <tr><td>Customer satisfaction</td><td>53%</td><td>96%</td></tr>
+          <tr><td>Clerk dependency</td><td>90%</td><td>70%</td></tr>
+          <tr><td>Navigation success rate</td><td>88%</td><td>92% (target: 90%+)</td></tr>
+          <tr><td>Accessibility</td><td>Inconsistent</td><td>Validated against WCAG 2.2 and Section 508</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top: 30px">Based on improvements we saw in task completion during user testing, we also project a 43% increase in customer satisfaction and a 20% reduction in clerk dependency as the redesign rolls out further.</p>
+    <p>We removed the reasons that caused customers to give up. More customers finished a shorter, clearer flow with a visible end points. Suspended transactions came back instead of being abandoned. The new Service Options screen made add-ons visible with a running total. Faster transactions meant more customers served per kiosk per hour.</p>
+    <p>Customers used to go to the counter when they got stuck, made a mistake, or couldn't find a way out. The redesign handles all three at the kiosk — guidance through the progress bar, easy fixes with Back and Edit, and a safe exit with Suspend and Void — freeing clerks to spend their time on transactions that actually need a person.</p>
   </div>
 </section>
 
 <section class="section--dark case-section">
   <div class="wrap">
-    <p class="eyebrow">takeaways</p>
-    <h2>Always Improving</h2>
-    <p>Build way-outs. Test for edge cases. </p>
-    <p>Innovatively iterate. Design is not a one-and-done assignment; new technologies emerge every day.</p>
+    <p class="eyebrow">what i took away</p>
+    <h2>Less is More</h2>
+    <p>Every screen has a cost. At a kiosk, customers have already waited in line, so the best design asks them for as little as possible — what can I remove, combine, or fill in automatically before adding anything new.</p>
+    <p>Confidence drives completion. The biggest wins didn't come from adding features. They came from making customers feel safe to act: showing progress, making mistakes easy to fix, and always offering a way out.</p>
   </div>
 </section>
-
-<div class="wrap">
-  <div class="case-nav">
-    <a href="work-faa.html">← FAA</a>
-    <a href="work-ussf.html">USSF →</a>
-  </div>
-</div>
 
 <footer class="site-footer">
   <a class="back-to-top" href="#top">back to top</a>
   <p>made with smiles&nbsp; :)</p>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close">×</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <video class="lightbox__img" id="lightboxVideo" muted loop playsinline hidden><source src="" type="video/mp4"></video>
+</div>
 
 <script src="script.js"></script>
 </body>

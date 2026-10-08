@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.addEventListener('pageshow', function () {
+    if (window.matchMedia('(max-width: 820px)').matches) { window.scrollTo(0, 0); }
+  });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lindsey Chu — Product Designer</title>
 <meta name="description" content="Lindsey Chu is a product designer working at the intersection of design, AI, technology, and business strategy.">
@@ -26,20 +32,22 @@
     </a>
     <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav class="nav__links">
-      <a href="index.html" aria-current="page">home</a>
-      <div class="nav__dropdown">
-        <a href="index.html#work">work</a>
-        <div class="nav__dropdown-menu">
-          <a href="work-faa.html">Federal Aviation Administration</a>
-          <a href="work-usps.html">USPS — Digital Modernization</a>
-          <a href="work-ussf.html">US Space Force</a>
-          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+      <div class="nav__links-inner">
+        <a href="index.html" aria-current="page">home</a>
+        <div class="nav__dropdown">
+          <a href="index.html#work" class="nav__dropdown-trigger">work<span class="nav__dropdown-plus" aria-hidden="true">+</span></a>
+          <div class="nav__dropdown-menu">
+            <div class="nav__dropdown-menu-inner">
+              <a href="work-usps.html">USPS — Digital Modernization</a>
+              <a href="work-faa.html">Federal Aviation Administration</a>
+            </div>
+          </div>
         </div>
+        <a href="about.html">about</a>
+        <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+        </a>
       </div>
-      <a href="about.html">about</a>
-      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
-      </a>
     </nav>
   </div>
 </header>
@@ -63,15 +71,12 @@
       <p>Tinkering at the intersection of design, AI, and business strategy... making intuitive products people love to use.</p>
       <p class="recent"><b>recent:</b> User Experience &amp; AI Design Consultant at IBM</p>
     </div>
-    <p class="hero__cta"><a href="#work">view my work ↓</a></p>
-  </div>
-  <div class="hero__scene" aria-hidden="true">
-    <img class="hero__scene-item hero__scene-item--kitchen" src="assets/kitchen.png" alt="">
-    <img class="hero__scene-item hero__scene-item--park" src="assets/park.png" alt="">
-    <img class="hero__scene-item hero__scene-item--bed" src="assets/bed.png" alt="">
-    <div class="hero__character" id="heroCharacter">
-      <img src="assets/character.png" alt="">
-    </div>
+    <p class="hero__cta">
+      <span class="bubble-cta">
+        <span class="bubble-field" aria-hidden="true"></span>
+        <a href="#work">view my work ↓</a>
+      </span>
+    </p>
   </div>
 </section>
 
@@ -81,18 +86,6 @@
     <h2>Case Studies</h2>
     <div class="projects">
 
-      <article class="project-card">
-        <div class="project-card__media">
-          <div class="img-placeholder"><img src="assets/faa-cover.jpg" alt="plane flying in the sunset"></div>
-        </div>
-        <div class="project-card__body">
-          <p class="project-card__tag">Federal Aviation Administration</p>
-          <h3>Digital Command Center</h3>
-          <p>Led UX design and strategy for a modernized National Airspace System dashboard integrating operational status, execution metrics, and predictive analytics.</p>
-          <p class="project-card__cta"><a class="btn btn--outline btn--marquee" href="work-faa.html"><span class="btn__track"><span class="btn__label">explore it! →</span><span class="btn__label btn__label--dup" aria-hidden="true">explore it! →</span></span></a></p>
-        </div>
-      </article>
-
       <article class="project-card is-reversed">
         <div class="project-card__media">
           <div class="img-placeholder"><img src="assets/usps-cover.webp" alt="USPS boxes"></div>
@@ -101,31 +94,57 @@
           <p class="project-card__tag">United States Postal Service</p>
           <h3>Improved Transaction Flows</h3>
           <p>Spearheaded end-to-end modernization of AI-powered kiosk experiences that increased customer sales.</p>
-          <p class="project-card__cta"><a class="btn btn--outline btn--marquee" href="work-usps.html"><span class="btn__track"><span class="btn__label">send it! →</span><span class="btn__label btn__label--dup" aria-hidden="true">send it! →</span></span></a></p>
+          <p class="project-card__cta">
+            <span class="bubble-cta bubble-cta--compact">
+              <span class="bubble-field" aria-hidden="true"></span>
+              <a class="btn btn--outline" href="work-usps.html">send it! →</a>
+            </span>
+          </p>
         </div>
       </article>
 
       <article class="project-card">
         <div class="project-card__media">
-          <div class="img-placeholder"><img src="assets/ussf-cover.jpg" alt="USSF logo"></div>
+          <div class="img-placeholder"><img src="assets/faa-cover.jpg" alt="plane flying in the sunset"></div>
         </div>
         <div class="project-card__body">
-          <p class="project-card__tag">United States Space Force</p>
-          <h3>Mission-Critical Training Platform</h3>
-          <p>Designed an AI learning platform with a scalable design system for consistent and intuitive experiences for 8,000+ personnel.</p>
-          <p class="project-card__cta"><a class="btn btn--outline btn--marquee" href="work-ussf.html"><span class="btn__track"><span class="btn__label">launch it! →</span><span class="btn__label btn__label--dup" aria-hidden="true">launch it! →</span></span></a></p>
+          <p class="project-card__tag">Federal Aviation Administration</p>
+          <h3>Digital Command Center</h3>
+          <p>Led UX design and strategy for a modernized National Airspace System dashboard integrating operational status, execution metrics, and predictive analytics.</p>
+          <p class="project-card__cta">
+            <span class="bubble-cta bubble-cta--compact">
+              <span class="bubble-field" aria-hidden="true"></span>
+              <a class="btn btn--outline" href="work-faa.html">explore it! →</a>
+            </span>
+          </p>
         </div>
       </article>
 
-      <article class="project-card is-reversed">
-        <div class="project-card__media">
-          <div class="img-placeholder"><img src="assets/dashboard-cover.png" alt="USPS dashboard"></div>
-        </div>
+      <article class="project-card">
         <div class="project-card__body">
           <p class="project-card__tag">United States Postal Service</p>
           <h3>Metrics Dashboard</h3>
           <p>Built data visualizations supporting 2,600+ international flights, enabling fraud detection, operational insights, and process improvements that reduced costs.</p>
-          <p class="project-card__cta"><a class="btn btn--outline btn--marquee" href="work-usps-dashboard.html"><span class="btn__track"><span class="btn__label">deliver it! →</span><span class="btn__label btn__label--dup" aria-hidden="true">deliver it! →</span></span></a></p>
+          <p class="project-card__cta">
+            <span class="coming-soon">
+              <svg class="coming-soon__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+              coming soon...
+            </span>
+          </p>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card__body">
+          <p class="project-card__tag">personal fun</p>
+          <h3>App Redesigns</h3>
+          <p>Making experiences across iOS and Android platforms more intuitive and engaging.</p>
+          <p class="project-card__cta">
+            <span class="coming-soon">
+              <svg class="coming-soon__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+              coming soon...
+            </span>
+          </p>
         </div>
       </article>
 

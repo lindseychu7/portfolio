@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.addEventListener('pageshow', function () {
+    if (window.matchMedia('(max-width: 820px)').matches) { window.scrollTo(0, 0); }
+  });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>USPS International CGR Dashboard — Lindsey Chu</title>
 <link rel="stylesheet" href="styles.css">
@@ -25,20 +31,22 @@
     </a>
     <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav class="nav__links">
-      <a href="index.html">home</a>
-      <div class="nav__dropdown">
-        <a href="index.html#work">work</a>
-        <div class="nav__dropdown-menu">
-          <a href="work-faa.html">Federal Aviation Administration</a>
-          <a href="work-usps.html">USPS — Digital Modernization</a>
-          <a href="work-ussf.html">US Space Force</a>
-          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+      <div class="nav__links-inner">
+        <a href="index.html">home</a>
+        <div class="nav__dropdown">
+          <a href="index.html#work" class="nav__dropdown-trigger">work<span class="nav__dropdown-plus" aria-hidden="true">+</span></a>
+          <div class="nav__dropdown-menu">
+            <div class="nav__dropdown-menu-inner">
+              <a href="work-usps.html">USPS — Digital Modernization</a>
+              <a href="work-faa.html">Federal Aviation Administration</a>
+            </div>
+          </div>
         </div>
+        <a href="about.html">about</a>
+        <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+        </a>
       </div>
-      <a href="about.html">about</a>
-      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
-      </a>
     </nav>
   </div>
 </header>
@@ -49,12 +57,13 @@
     <h1 style="font-size:40px;">Metrics Dashboard</h1>
     <dl class="case-meta">
       <div><dt>Role</dt><dd>Data Engineer / UX Designer</dd></div>
+      <div><dt>Team</dt><dd>2 Engineers</dd></div>
       <div><dt>Project Type</dt><dd>Data Analytics</dd></div>
-      <div><dt>Impact</dt><dd>Reduced operational costs by 24%</dd></div>
+      <div><dt>Impact</dt><dd>Reduced operational costs by 24%, Prevented revenue loss</dd></div>
       <div><dt>Tools</dt><dd>Python, Plotly, Figma</dd></div>
     </dl>
 
-    <p style="margin-top:32px;">USPS manages thousands of international carrier generated routes (CGRs) spanning commercial airlines, international carriers, customs operations, and logistics partners. I designed and built an analytics and visualization platform that consolidated operational data across more than 2,600 international flight routes.</p>
+    <p style="margin-top:32px;">USPS manages thousands of international flight route data spanning commercial airlines, international carriers, customs operations, and logistics partners. I designed and built an analytics and visualization platform that consolidated operational data across more than 2,600 international flight routes.</p>
   </div>
 </section>
 
@@ -92,23 +101,6 @@
         <li>The team lacked a consistent way to identify anomalies and suspicious scanning behavior across routes.</li>
       </ul>
     </div>
-  </div>
-</section>
-
-<section class="section--tint case-section">
-  <div class="wrap two-col">
-    <div>
-    <p class="eyebrow">competitive analysis</p>
-    <h2>Existing Dashboards</h2>
-    <p>Because no unique, comprehensive USPS-specific dashboard existed, inspiration was gathered from enterprise analytics platforms like:</p>
-    <ul>
-      <li>Tableau Executive Dashboards</li>
-      <li>Microsoft Power BI</li>
-      <li>FedEx Logistics Reporting</li>
-      <li>UPS Operations Dashboards</li>
-    </ul>
-    </div>
-    <div class="img-placeholder"><img src="assets/dashboard-comp.jpeg" style="width: 100%; max-width: 500px; height: auto;"></div>
   </div>
 </section>
 
@@ -176,13 +168,6 @@
     <p>By aligning user needs, business objectives, and operational realities, the platform evolved from a reporting tool into a strategic decision-support product that delivered tangible organizational value.</p>
   </div>
 </section>
-
-<div class="wrap">
-  <div class="case-nav">
-    <a href="work-ussf.html">← USSF</a>
-    <a href="work-faa.html">FAA →</a>
-  </div>
-</div>
 
 <footer class="site-footer">
   <a class="back-to-top" href="#top">back to top</a>

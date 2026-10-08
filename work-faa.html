@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.addEventListener('pageshow', function () {
+    if (window.matchMedia('(max-width: 820px)').matches) { window.scrollTo(0, 0); }
+  });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Federal Aviation Administration — Lindsey Chu</title>
 <link rel="stylesheet" href="styles.css">
@@ -25,20 +31,22 @@
     </a>
     <button class="nav__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav class="nav__links">
-      <a href="index.html">home</a>
-      <div class="nav__dropdown">
-        <a href="index.html#work">work</a>
-        <div class="nav__dropdown-menu">
-          <a href="work-faa.html">Federal Aviation Administration</a>
-          <a href="work-usps.html">USPS — Digital Modernization</a>
-          <a href="work-ussf.html">US Space Force</a>
-          <a href="work-usps-dashboard.html">USPS — CGR Dashboard</a>
+      <div class="nav__links-inner">
+        <a href="index.html">home</a>
+        <div class="nav__dropdown">
+          <a href="index.html#work" class="nav__dropdown-trigger">work<span class="nav__dropdown-plus" aria-hidden="true">+</span></a>
+          <div class="nav__dropdown-menu">
+            <div class="nav__dropdown-menu-inner">
+              <a href="work-usps.html">USPS — Digital Modernization</a>
+              <a href="work-faa.html">Federal Aviation Administration</a>
+            </div>
+          </div>
         </div>
+        <a href="about.html">about</a>
+        <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
+        </a>
       </div>
-      <a href="about.html">about</a>
-      <a href="https://www.linkedin.com/in/lindsey-chu-1825741a3/" target="_blank" rel="noopener" class="nav__icon-link" aria-label="LinkedIn">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.37-2.05-3.37-2.06 0-2.37 1.6-2.37 3.26V21h-4V9Z"/></svg>
-      </a>
     </nav>
   </div>
 </header>
@@ -46,15 +54,19 @@
 <section class="case-hero">
   <div class="wrap">
     <p class="eyebrow">Federal Aviation Administration</p>
-    <h1 style="font-size:44px;">Digital Command Center</h1>
+    <h1 style="font-size:40px;">Designing a Decision-Support Tool</h1>
     <dl class="case-meta">
       <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
-      <div><dt>Project Type</dt><dd>Bid and Proposal</dd></div>
-      <div><dt>Impact</dt><dd>Centralized View, Faster Decision-Making, Competitive Proposal</dd></div>
-      <div><dt>Tools</dt><dd>Figma, Figma Make, Claude, Mural, Information Hierarchy, Systems Thinking</dd></div>
+      <div><dt>Team</dt><dd>1 designer, 1 engineer, 1 project lead</dd></div>
+      <div><dt>Project Type</dt><dd>4 week RFP</dd></div>
+      <div><dt>Impact</dt><dd>Headlined competitive proposal, Unified decision-making</dd></div>
+      <div><dt>Tools</dt><dd>Mural, Figma, Figma Make, Claude, Jira, Monday</dd></div>
     </dl>
-
-    <p style="margin-top:32px;">The Federal Aviation Administration (FAA) manages hundreds of initiatives that shape the future of the National Airspace System (NAS). I led the design of a decision-support dashboard that integrates project metrics and operational status into a single platform.</p>
+    <p style="margin-top:32px;">Due to disconnected systems, the FAA needed a digital command center that provided a unified view of operations, program health, KPIs, and risk. Preface: This is not a working dashboard, but rather a static proof-of-capability graphic that had to convince evaluators as a view-only screenshot, depicting the interactive system the team would build if the contract is won.</p>
+    <div class="disclaimer">
+      <img src="assets/warning.png" alt="">
+      <span>As this project was completed for a government client, I'm not able to share all of the original work publicly. Some of the visuals shown here have been reworked or recreated to demonstrate my process without disclosing confidential materials.</span>
+    </div>
   </div>
 </section>
 
@@ -62,117 +74,221 @@
   <div class="wrap two-col">
     <div>
       <p class="eyebrow">problem</p>
-      <h2>Disconnected Systems</h2>
-      <p>Managers tracked schedules and budgets in one environment. Ops monitored system performance in another. Leadership relied on manual reports to understand program health.</p>
-      <ul>
-        <li>Limited visibility and delayed decision-making</li>
-        <li>Difficulty identifying risks before impact</li>
-        <li>Manual effort to summarize project status</li>
-      </ul>
-      <div class="callout">How might we enable FAA stakeholders to monitor modernization efforts, assess operational impact, and proactively manage risk across the NAS?</div>
+      <h2>No Single Source of Truth</h2>
+      <p>FAA teams cross-checked 5 different systems to judge program health. Nobody saw risk early enough to act on it, and each report meant pulling data by hand. Even beyond cost and time, late risk signals affect the safety of flyers.</p>
+      <div class="hmw-bubble">
+        <img src="assets/faa-stakeholder.png" alt="" class="hmw-bubble__character">
+        <div class="hmw-bubble__speech">It could take 3–4 hours to pull data from different systems into a status report.
+          <span class="hmw-bubble__dot hmw-bubble__dot--1"></span>
+          <span class="hmw-bubble__dot hmw-bubble__dot--2"></span>
+          <span class="hmw-bubble__dot hmw-bubble__dot--3"></span>
+        </div>
+      </div>
     </div>
-    <div class="img-placeholder"><img src="assets/faa-problem.png" alt="diagram of 5 different systems connected with ? in the middle" style="width: 100%; max-width: 500px; height: auto;"></div>
-  </div>
-</section>
-
-<section class="case-section">
-  <div class="wrap two-col">
-    <div>
-      <p class="eyebrow">user research</p>
-      <h2>Current Workflows</h2>
-      <ul>
-        <li><b>Qualitative:</b> 10+ Interviews, Focus Groups, Journey Mapping, Personas</li>
-        <li><b>Quantitative:</b> Surveys, CSAT/CES Scores, Task Completion Times</li>
-        <li><b>Biggest Takeaway:</b> Design for different user groups. Executives benefit from high level views of cost, schedule, and KPI metrics, while program managers want granular detail into project health and recommended actions.</li>
-      </ul>
-    </div>
-    <div>
-      <p class="eyebrow">key findings</p>
-      <h2>Pain Points</h2>
-      <ul>
-        <li>"On a bad week, pulling data from Ariba, Kahua, and P6 into a status report could take 3 to 4 hours."</li>
-        <li>"I can tell you what happened last quarter. It's hard to tell what's about to go wrong."</li>
-        <li>"I don't want the team to waste time on extensive manual reporting when they could be spending their efforts on improving ATC health."</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section--tint case-section">
-  <div class="wrap two-col">
-    <div>
-      <p class="eyebrow">requirements & goals</p>
-      <h2>Overcoming Time Constraints</h2>
-      <p>Since this was a month-long project, the project lead pushed for pretty aggressive milestones for completing parts of the dashboard. Impact vs. effort discussions: Will it be impactful in the proposal? What is the MVP?</p>
-    </div>
-    <div class="img-placeholder"><img src="assets/faa-reqs.png" alt="requirements table" style="width: 100%; max-width: 400px; height: auto;"></div>
+    <div class="img-placeholder problem-visual"><img src="assets/faa-problem.png" alt="diagram of 5 different systems connected with ? in the middle" style="width: 100%; max-width: 500px; height: auto;"></div>
   </div>
 </section>
 
 <section class="case-section">
   <div class="wrap">
-    <p class="eyebrow">ideation</p>
-    <h2>Style & Layout</h2>
-    <p>Since this dashboard was meant to be a static proof-of-capability graphic, it had to convince a proposal evaluator as a one-page, view-only, no scroll depiction. I experimented with the F/Z eye sweep pattern: left-to-right along the top, then drop down for a shorter sweep, then vertically down the left edge. I applied this across every view: primary, summary-level metrics top-left, and everything granular moving down and to the right.</p>
-    <div class="wrap two-col">
-      <div class="img-placeholder"><img src="assets/faa-ideation1.png" alt="brainstorming layout" style="width: 100%; max-width: 400px; height: auto;"></div>
-      <div class="img-placeholder"><img src="assets/faa-ideation2.png" alt="design system" style="width: 100%; max-width: 400px; height: auto;"></div>
-    </div>  
-  </div>
-</section>
-
-<section class="section--tint case-section">
-  <div class="wrap">
-    <p class="eyebrow">stakeholder validation</p>
-    <h2>Soliciting Feedback</h2>
-    <p>I was theoretically designing for ATC operators who'd use this daily, but I was actually designing for the executives and evaluators who'd skim this proposal in a few minutes.</p>
-    <ul>
-      <li><b>Five-second tests:</b> “I can easily pinpoint risk danger.”</li>
-      <li><b>Cold-read comprehension tests:</b> “I could tell this dashboard is meant to be a high-level overview of operation, schedule, and cost metrics for a program.”</li>
-      <li><b>Observational:</b> # of dashboards, navigation, filtering, AI capability. </li>
+    <p class="eyebrow">week 1 - exploration</p>
+    <h2>Research Under Red Tape</h2>
+    <p>With no login access to the FAA's platforms, every finding came from primary/secondary research instead of hands-on exploration (interviews, personas, surveys tracking satisfaction/effort/task completion). I wanted to learn what data people actually look at, and which decisions it drives.</p>
+    <div class="reveal-cards">
+      <button class="reveal-card" type="button">
+        <div class="reveal-card__inner">
+          <div class="reveal-card__face reveal-card__face--front">
+            <span class="reveal-card__label">What do Executives want?</span>
+          </div>
+          <div class="reveal-card__face reveal-card__face--back">
+            <span class="reveal-card__content">High-level cost, schedule, and KPI metrics to report status and judge if the program is on track.</span>
+          </div>
+        </div>
+      </button>
+      <button class="reveal-card" type="button">
+        <div class="reveal-card__inner">
+          <div class="reveal-card__face reveal-card__face--front">
+            <span class="reveal-card__label">What do Program Managers want?</span>
+          </div>
+          <div class="reveal-card__face reveal-card__face--back">
+            <span class="reveal-card__content">Project health detail and recommended actions to act and improve the score.</span>
+          </div>
+        </div>
+      </button>
+      <button class="reveal-card" type="button">
+        <div class="reveal-card__inner">
+          <div class="reveal-card__face reveal-card__face--front">
+            <span class="reveal-card__label">What do ATC Operators want?</span>
+          </div>
+          <div class="reveal-card__face reveal-card__face--back">
+            <span class="reveal-card__content">Daily operational view to run day-to-day operations.</span>
+          </div>
+        </div>
+      </button>
+    </div>
+    <p style="padding-top:20px;">The 3–4 hour status report was an opportunity for AI assistance. With access to operations data, a chatbot could draft the report.</p>
+    <div class="wrap two-col image-row" style="padding:0; margin-top:24px;">
+      <div>
+        <p class="eyebrow" style="margin-bottom:8px;">personas</p>
+        <div class="img-placeholder"><img src="assets/faa-persona.png" alt="persona cards" class="lightbox-trigger" style="width: 100%; max-width: min(440px, 100%); height: auto;"></div>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom:8px;">survey results</p>
+        <div class="img-placeholder"><img src="assets/faa-surveyresults.png" alt="survey highlights" class="lightbox-trigger" style="width: 100%; max-width: min(520px, 100%); height: auto;"></div>
+      </div>
+    </div>
+    <p class="core-needs-label" style="margin-top:54px;"><b>Core needs:</b></p>
+    <div class="needs-row">
+      <span class="needs-row__chip" style="width:320px;">Centralized visibility<img src="assets/faa-plane.png" alt="" class="needs-row__chip-plane"></span>
+      <span class="needs-row__chip" style="width:310px;">Faster decision-making<img src="assets/faa-plane.png" alt="" class="needs-row__chip-plane"></span>
+      <span class="needs-row__chip" style="width:276px;">Actionable insights<img src="assets/faa-plane.png" alt="" class="needs-row__chip-plane"></span>
+    </div>
+    <ul class="needs-list">
+      <li>Centralized visibility</li>
+      <li>Faster decision-making</li>
+      <li>Actionable insights</li>
     </ul>
-    <div class="img-placeholder"><img src="assets/faa-validation.png" alt="design iterations" class="lightbox-trigger"></div>
-  </div>
-</section>
-
-<section class="case-section">
-  <div class="wrap">
-    <p class="eyebrow">results</p>
-    <h2>Unified Command Center</h2>
-    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/faa-v1.mov" type="video/mp4"></video></div>
-    <p style="margin-top: 30px; margin-bottom: 30px;">Upon log in, users can view Announcements, Important Events, Employee Onboarding information, and various Dashboards and Applications to navigate to. These include Executive Status, Project Management, HR System, etc. Notifications/Inbox are located at the top right for easy access to any alerts or system updates. The ATOM Chatbot Assistant is present on all pages for additional AI-personalized guidance.</p>
-    <div class="img-placeholder"><video autoplay muted loop width="800" height="450" controls><source src="assets/faa-v2.mov" type="video/mp4"></video></div>
-    <p style="margin-top: 30px;"">For the first time, FAA stakeholders can use this unified command center to understand modernization progress, operational impact, and emerging risks.</p>
   </div>
 </section>
 
 <section class="section--tint case-section">
   <div class="wrap">
-    <p class="eyebrow">additional improvements</p>
-    <h2>Looking Ahead</h2>
+    <p class="eyebrow">week 2 - rapid prototyping</p>
+    <h2>Consistent Visual Pattern</h2>
+    <p>From low-fidelity mockups in Mural/Claude to high-fidelity prototypes in Figma (Make), I focused on visual cues: </p>
     <ul>
-      <li>Accessible elements</li>
-      <li>Interactive components: change animations, trend sparklines, hover reveal, drag and drop</li>
-      <li>Pressure testing: integration with backend and large datasets</li>
+      <li><b>F/Z eye-sweep pattern:</b> sweep left to right across the top, drop down for a second, shorter sweep, then scan down the left edge. This meant summary metrics top-left, granular detail down and to the right.</li>
+      <li><b>Dark Design system:</b> built from scratch, drawing on other IBM projects with shared themes of dark mode, data-heavy screens, and federal high-stakes missions. Focused on high-contrast color pairs, button sizing, navigation layout, and information density.</li>
+    </ul>
+    <div class="hover-hint-row visual-pattern--desktop" style="margin-top:24px;">
+      <p class="hover-hint">hover for<br>more...</p>
+      <div class="two-col" style="padding:0;">
+        <div class="img-placeholder eyesweep-video">
+          <video class="eyesweep-video__media" muted loop playsinline preload="metadata">
+            <source src="assets/faa-eyesweep.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="img-placeholder design-system-slideshow">
+          <img src="assets/faa-designsystem1.png" alt="design system" class="design-system-slideshow__img" data-images="assets/faa-designsystem1.png,assets/faa-designsystem2.png,assets/faa-designsystem3.png,assets/faa-designsystem4.png">
+        </div>
+      </div>
+    </div>
+    <div class="two-col visual-pattern--mobile" style="padding:0; margin-top:24px;">
+        <div class="img-placeholder">
+          <img src="assets/faa-eyesweep-still.png" alt="eye-sweep interaction, final state" style="width: 100%; max-width: 450px; height: auto;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/faa-designsystem1.png" alt="design system" style="width: 100%; max-width: 400px; height: auto;">
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">weeks 3–4 - testing & iterating</p>
+    <h2>Comprehension Upon First Glance</h2>
+    <p>The real audience wasn't the ATC operator who'd use this daily — it was the executives and evaluators skimming the proposal for a few minutes.</p>
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr><th>Test</th><th>Question it answered</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Five-second test</td><td>After five seconds, can reviewers pinpoint the key metrics? "Tell me what you see."</td></tr>
+          <tr><td>Cold-read comprehension</td><td>Can someone with no FAA background explain what the system is for?</td></tr>
+          <tr><td>A/B layouts</td><td>What feels too sparse, and what feels too crammed, on first look?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mockup-carousel">
+      <button class="mockup-carousel__arrow mockup-carousel__arrow--prev" type="button" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="mockup-carousel__frame">
+        <div class="mockup-carousel__viewport">
+          <div class="mockup-carousel__track" data-images="assets/faa-mockup1.png,assets/faa-mockup2.png,assets/faa-mockup3.png,assets/faa-execstatus.png" data-captions="Executive Status v1,Executive Status v2,Executive Status v3,Executive Status v4"></div>
+        </div>
+      </div>
+      <button class="mockup-carousel__arrow mockup-carousel__arrow--next" type="button" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <p class="mockup-carousel__caption"></p>
+    <div class="mockup-carousel__dots"></div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">need 1</p>
+    <h2>Centralized Visibility</h2>
+    <div class="two-col" style="margin-top:24px;">
+      <div class="img-placeholder"><img src="assets/faa-applauncher.png" alt="Application Launcher" class="lightbox-trigger" style="width: 100%; max-width: 500px; height: auto;"></div>
+      <div>
+        <h3>Application Launcher</h3>
+        <p>Every user lands here first. Attention elements anchor the top-left, with Announcements and Upcoming dates completing that row. Dashboards and Applications form a shorter second sweep below, so each user can click into specific tools they need. A persistent top nav carries the ATOM assistant, notifications, and inbox.</p>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:40px;">
+      <div class="img-placeholder"><img src="assets/faa-execstatus.png" alt="Executive Status dashboard" class="lightbox-trigger" style="width: 100%; max-width: 500px; height: auto;"></div>
+      <div>
+        <h3>Executive Status</h3>
+        <p>Executives want a fast, high-level read on KPIs to judge if the program is on track. Program status anchors the top-left, with schedule and cost variance completing that row; a second sweep of KPI tiles lets them confirm which metric is driving the headline before they scroll to the earned-value trend and health breakdown lower on the page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">need 2</p>
+    <h2>Faster Decision-Making</h2>
+    <div class="two-col" style="margin-top:24px;">
+      <div class="img-placeholder"><img src="assets/faa-projman.png" alt="Project Management dashboard" class="lightbox-trigger" style="width: 100%; max-width: 500px; height: auto;"></div>
+      <div>
+        <h3>Project Management</h3>
+        <p>Program Managers wanted project health detail and recommended actions to improve their score. The facility map anchors the top-left ("where's the problem"), with the program health trend showing historical data. Project scores and recommended actions are directly below, and the full project table at the bottom for a closer look.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section--tint case-section">
+  <div class="wrap">
+    <p class="eyebrow">need 3</p>
+    <h2>Actionable Insights</h2>
+    <div class="two-col" style="margin-top:24px;">
+      <div class="img-placeholder"><img src="assets/faa-riskreg.png" alt="Operational Risk dashboard" class="lightbox-trigger" style="width: 100%; max-width: 500px; height: auto;"></div>
+      <div>
+        <h3>Risk Register</h3>
+        <p>Program Managers and leads each own mitigation work and need to act on risk before it becomes a safety issue. The focus and average risk score anchor the top-left, the risk matrix plots severity against likelihood next to it, and the mitigation timeline shows who's on schedule. The full risk table runs below, so anyone can scan down and see what's expected of them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="wrap">
+    <p class="eyebrow">outcome</p>
+    <h2>What's Next</h2>
+    <p>The visuals went into a competitive proposal presented to FAA executives. It was praised for great visualizations and hierarchy with potential to feed high-stakes decisions. If the contract moves past the RFP phase, I would:</p>
+    <ul>
+      <li>Test and extend accessible elements</li>
+      <li>Add interactions (click a line item for detail, reveal more on hover)</li>
+      <li>Connect to the backend and measure load times on large datasets</li>
     </ul>
   </div>
 </section>
 
 <section class="section--dark case-section">
   <div class="wrap">
-    <p class="eyebrow">takeaways</p>
-    <h2>A Single Glance</h2>
-    <p>Even though I didn't design something usable immediately, I learned to design for a single glance. Experiences usually rely on first look, and within the first 5 seconds, a user should know what to do.</p>
-    <p>UX extends beyond visual and interface design. Combining user research, business objectives, and operational needs transforms platforms that government organizations depend on daily. Product strategy helped align user needs, technical feasibility, and organizational goals into a cohesive solution vision.</p>
+    <p class="eyebrow">reflection</p>
+    <h2>Takeaways</h2>
+    <p>Even though nothing was usable on day one, the project changed how I design. Design for a single glance: most experiences live or die on the first five seconds, and with no interactions to clarify things, hierarchy and information architecture had to do all the explaining.</p>
+    <p>Align product, research, and engineering at every step. From prioritization to technical feasibility, those conversations belong before anything is built.</p>
   </div>
 </section>
-
-<div class="wrap">
-  <div class="case-nav">
-    <a href="index.html#work">← all work</a>
-    <a href="work-usps.html">USPS →</a>
-  </div>
-</div>
 
 <footer class="site-footer">
   <a class="back-to-top" href="#top">back to top</a>
